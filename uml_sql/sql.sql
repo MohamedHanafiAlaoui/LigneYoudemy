@@ -54,3 +54,33 @@ CREATE TABLE classcours (
     s_status ENUM('active', 'not_active') NOT NULL
 
 )
+
+
+ALTER TABLE user
+ADD PRIMARY KEY (id_user);
+
+ALTER TABLE role
+ADD PRIMARY KEY (id_role);
+
+
+
+ALTER TABLE user
+ADD FOREIGN KEY (id_role) 
+REFERENCES role(id_role);
+
+
+ALTER TABLE tagscours
+ADD FOREIGN KEY (id_tag) 
+REFERENCES tags(id_tag);
+
+ALTER TABLE tagscours
+ADD FOREIGN KEY (id_cours) 
+REFERENCES cours(id_cours);
+
+ALTER TABLE classcours
+ADD FOREIGN KEY (id_cours) 
+REFERENCES cours(id_cours);
+
+ALTER TABLE classcours
+ADD FOREIGN KEY (id_user) 
+REFERENCES user(id_user);
