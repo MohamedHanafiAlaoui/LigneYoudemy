@@ -40,3 +40,9 @@ CREATE TABLE tagscours (
     id_tag INT NOT NULL,
     id_cours INT NOT NULL
 );
+
+
+CREATE TABLE categories (
+    id_categories INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name_categories VARCHAR(50) NOT NULL
+);
