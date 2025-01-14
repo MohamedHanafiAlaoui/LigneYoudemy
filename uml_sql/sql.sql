@@ -46,3 +46,11 @@ CREATE TABLE categories (
     id_categories INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name_categories VARCHAR(50) NOT NULL
 );
+
+CREATE TABLE classcours (
+    id_classcours INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_cours INT NOT NULL,
+	id_user INT NOT NULL,
+    s_status ENUM('active', 'not_active') NOT NULL
+
+)
