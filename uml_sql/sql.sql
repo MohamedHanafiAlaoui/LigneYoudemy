@@ -34,3 +34,9 @@ CREATE TABLE tags (
     id_tag INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name_tag VARCHAR(50) NOT NULL
 );
+
+CREATE TABLE tagscours (
+    id_tagscours INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_tag INT NOT NULL,
+    id_cours INT NOT NULL
+);
