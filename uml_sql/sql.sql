@@ -27,3 +27,5 @@ CREATE TABLE cours (
     id_categories INT NOT NULL,
     d_date DATETIME DEFAULT NULL
 );
+
+ALTER TABLE cours ADD COLUMN image varchar(500);
