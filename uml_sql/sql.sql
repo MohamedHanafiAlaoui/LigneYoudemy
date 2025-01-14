@@ -10,3 +10,8 @@ CREATE TABLE user (
   id_role int DEFAULT NULL,
   image_user varchar(255) DEFAULT NULL
 )
+
+CREATE TABLE role (
+  id_role int NOT NULL,
+  type_role varchar(70) NOT NULL
+)
