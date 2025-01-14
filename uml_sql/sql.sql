@@ -15,3 +15,15 @@ CREATE TABLE role (
   id_role int NOT NULL,
   type_role varchar(70) NOT NULL
 )
+
+
+CREATE TABLE cours (
+    id_cours INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    titre_cours VARCHAR(255) NOT NULL,
+    contenu TEXT NOT NULL,
+    description VARCHAR(250),
+    id_user INT NOT NULL,
+    s_status ENUM('active', 'not_active') NOT NULL,
+    id_categories INT NOT NULL,
+    d_date DATETIME DEFAULT NULL
+);
