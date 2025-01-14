@@ -29,3 +29,8 @@ CREATE TABLE cours (
 );
 
 ALTER TABLE cours ADD COLUMN image varchar(500);
+
+CREATE TABLE tags (
+    id_tag INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name_tag VARCHAR(50) NOT NULL
+);
