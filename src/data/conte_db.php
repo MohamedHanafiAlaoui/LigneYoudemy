@@ -19,7 +19,8 @@ class Conte_db
         $this->host = $host;
 
         try {
-          $this->conn = new PDO("mysql:{$this->host};dbname={$this->dbname}", "{$this->user}", "{$this->pass}");
+            $this->conn = new PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->user, $this->pass);
+
           $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         } catch (Exception $e) {
@@ -34,11 +35,14 @@ class Conte_db
         return self::$instance;
     }
 
-
+    public function getConn() {
+        return $this->conn;
+    }
 
 }
 
 
+// var_dump (password_hash("Password123",PASSWORD_DEFAULT));
 
 
 

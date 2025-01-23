@@ -1,6 +1,6 @@
 <?php
 
-require "conte_db.php";
+
 
 
 
@@ -34,84 +34,112 @@ class cours
      return $this->id_cours;
    }
  
-   public function gettitre_cours()
+   public function getTitreCours()
    {
  
      return $this->titre_cours;
      
    }
 
-   public function getcontenu()
+   public function getContenu()
    {
  
      return $this->contenu;
      
    }
-   public function getdescription()
+   public function getDescription()
    {
  
      return $this->description;
      
    }
 
-   public function getid_user()
+   public function getIdUser()
    {
  
      return $this->id_user;
      
    }
 
-   public function getid_categories()
+   public function getIdCategories()
    {
  
      return $this->id_categories;
      
    }
 
-   public function getd_date()
+   public function getDate()
    {
  
      return $this->d_date;
      
    }
 
-   public function getimage()
+   public function getImage()
    {
  
      return $this->image;
      
    }
-   public function newCategories()
+
+   public function gets_status()
    {
-    $conn=Conte_db::getConnection()->getConn();
-
-      try 
-      {
-  
-          $stmt = $conn->prepare(
-              "INSERT INTO cours (titre_cours,contenu,:description,id_user,s_status,id_categories,d_date,image) 
-               VALUES (:titre_cours,:contenu,:description,:id_user,:s_status,:id_categories,:d_date,:image)"
-          );
-          $stmt-> bindParam(':titre_cours',$this->titre_cours) ;
-          $stmt->bindParam(':contenu', $this->contenu);
-          $stmt->bindParam(':description', $this->description);
-          $stmt->bindParam(':id_user', $this->id_user);
-          $stmt->bindParam(':s_status', $this->s_status);
-          $stmt->bindParam(':id_categories', $this->id_categories);
-          $stmt->bindParam(':d_date', $this->d_date);
-          $stmt->bindParam(':image', $this->image);
-          $stmt->execute();
-          return true;
-      } 
-      catch (PDOException $e) {
-        error_log("Database error: " . $e->getMessage());
-        throw new Exception("An error occurred while adding the course: " . $e->getMessage());
-    }
-
+ 
+     return $this->s_status;
+     
    }
+
 
 
 }
 
+class CoursAll extends cours
+{
+    private $FullName;
+    private $namecategories;
+    private $tags_names;
+
+    public function __construct(
+        $id_cours = null,
+        $titre_cours = null,
+        $contenu = null,
+        $description = null,
+        $id_user = null,
+        $s_status = null,
+        $id_categories = null,
+        $d_date = null,
+        $image = null,
+        $FullName = null,
+        $namecategories = null,
+        $tags_names = null
+    ) {
+        
+        parent::__construct($id_cours, $titre_cours, $contenu, $description, $id_user, $s_status, $id_categories, $d_date, $image);
+
+        
+        $this->FullName = $FullName;
+        $this->namecategories = $namecategories;
+        $this->tags_names = $tags_names;
+    }
+
+   
+    public function getFullName()
+    {
+        return $this->FullName;
+    }
+
+    
+    public function getNameCategories()
+    {
+        return $this->namecategories;
+    }
+
+ 
+    public function getTagsNames()
+    {
+        return $this->tags_names;
+    }
+
+  }
 
             

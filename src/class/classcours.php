@@ -1,7 +1,5 @@
 <?php
 
-require "conte_db.php";
-
 
 
 class classcours
@@ -10,7 +8,7 @@ class classcours
    private $id_cours;
    private $id_user;
    private $s_status;
-   private $conn;
+
 
    public function __construct($id_classcours	, $id_cours,$id_user,$s_status)
    {
@@ -43,39 +41,40 @@ class classcours
      
    }   
 
+}
 
 
+class dclasscours extends classcours
+{
 
+  private $titre_cours;
+  private $FullName;
 
+  public function __construct($id_classcours	, $id_cours,$id_user,$s_status,$titre_cours,$FullName)
+  {
 
+    parent::__construct($id_classcours	, $id_cours,$id_user,$s_status);
 
-   public function newclasscours()
-   {
-    $conn=Conte_db::getConnection()->getConn();
+   $this->titre_cours=$titre_cours;
+   $this->FullName=$FullName;
+  }
 
-      try 
-      {
-  
-          $stmt = $conn->prepare(
-              "INSERT INTO classcours (id_cours,id_user,s_status) 
-               VALUES (:id_cours,:id_user,:s_status)"
-          );
-          $stmt-> bindParam(':id_cours',$this->id_cours) ;
-          $stmt-> bindParam(':id_user',$this->id_user) ;
-          $stmt-> bindParam(':s_status',$this->s_status) ;
-          $stmt->execute();
-          return true;
-      } 
-      catch (PDOException $e) {
-          error_log("Database error: " . $e->getMessage());
-          throw new Exception("An error occurred while saving the user: " . $e->getMessage());
-      }
+  public function gettitre_cours()
+  {
 
-   }
+    return $this->titre_cours;
+    
+  }   
+
+  public function getFullName()
+  {
+
+    return $this->FullName;
+    
+  }   
 
 
 }
-
 
 
             

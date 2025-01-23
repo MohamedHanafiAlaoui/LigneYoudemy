@@ -1,6 +1,6 @@
 <?php
 
-require "conte_db.php";
+
 
 
 
@@ -26,29 +26,6 @@ class Categories
      return $this->namecategories;
      
    }
-
-   public function newCategories()
-   {
-    $conn=Conte_db::getConnection()->getConn();
-
-      try 
-      {
-  
-          $stmt = $conn->prepare(
-              "INSERT INTO categories (namecategories) 
-               VALUES (:namecategories)"
-          );
-          $stmt-> bindParam(':namecategories',$this->namecategories) ;
-          $stmt->execute();
-          return true;
-      } 
-      catch (PDOException $e) {
-          error_log("Database error: " . $e->getMessage());
-          throw new Exception("An error occurred while saving the user: " . $e->getMessage());
-      }
-
-   }
-
 
 }
 

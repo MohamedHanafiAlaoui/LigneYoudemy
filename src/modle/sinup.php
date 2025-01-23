@@ -1,8 +1,10 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+require_once "../data/conte_db.php";
 
-require "../class/user.php";
+
+require "../data/user.php";
 
 
 
@@ -16,8 +18,8 @@ if (isset($_POST["submit"])) {
     $fullName = $_POST["fullName"];
     $id_role = $_POST["id_role"];
   
-    $newUser = new User( null,null, null,$email , null, null);
-
+    $newUser = new User( null,null, null,$email , null, null,null);
+    $s_status;
     
 
     if (empty($fullName)) {
@@ -85,15 +87,23 @@ if (isset($_POST["submit"])) {
 
     }
 
+    if ($id_role ==2) {
+        $s_status="disactive";
+    } else {
+        $s_status="active";
+    }
+    
+
 
     
     if ($isValid) {
         try {
     
-            $newUser = new User( null,$fullName, $password,  $email,  $id_role, "https://static.vecteezy.com/system/resources/thumbnails/002/387/693/small_2x/user-profile-icon-free-vector.jpg");
+            $newUser = new User( null,$fullName, $password,  $email,  $id_role, "https://static.vecteezy.com/system/resources/thumbnails/002/387/693/small_2x/user-profile-icon-free-vector.jpg",$s_status);
             $newUser->setPasswordHash($password);
             if ($newUser->newUser()) {
-                echo "تمت إضافة المستخدم بنجاح!";
+            header("Location: /Mentor/Mentor/login.php");
+              
             }
         } catch (Exception $e) {
             echo " error: " . $e->getMessage();

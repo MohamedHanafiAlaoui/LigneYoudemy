@@ -1,8 +1,9 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+require_once "../data/conte_db.php";
 
-require "../class/user.php";
+require "../data/user.php";
 
 
 
@@ -70,6 +71,30 @@ if (isset($_POST["submit"])) {
             $user = User::signin($email,  $password);
 
             echo "Welcome, " . $user->getFullName();
+
+            session_start();
+            $_SESSION['user_id'] = $user->getid();
+            $_SESSION['user_email'] = $user->getEmail();
+            $_SESSION['user_role'] =$user->getid_role();
+            $_SESSION['FullName'] = $user->getFullName() ;
+            $_SESSION['s_status'] = $user->gets_status() ;
+            $_SESSION['bane'] = $user->getbane() ;
+
+            if ($_SESSION['user_role'] == 1) {
+
+            header("Location: /Mentor/Dashboardadmin.php");
+
+                
+            } else if ($_SESSION['user_role'] == 2) {
+                
+            header("Location: /Mentor/Dashboardtea.php");
+
+            } else {
+                header("Location: /Mentor/index.php");
+            }
+            
+
+
         } catch (Exception $e) {
             $passwordError = "not corecte.";
 

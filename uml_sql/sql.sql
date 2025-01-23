@@ -84,3 +84,10 @@ REFERENCES cours(id_cours);
 ALTER TABLE classcours
 ADD FOREIGN KEY (id_user) 
 REFERENCES user(id_user);
+
+
+ALTER TABLE user MODIFY COLUMN Email  varchar(250) NOT NULL UNIQUE;
+
+CREATE TABLE categories (id_categories int not null AUTO_INCREMENT PRIMARY key,namecategories varchar(50) not null)
+
+ALTER TABLE cours add FOREIGN KEY (id_categories) REFERENCES categories(id_categories);
